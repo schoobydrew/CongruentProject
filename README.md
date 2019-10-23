@@ -1,2 +1,2 @@
 # CongruentProject
-find if numbers are congruent
+helper scripts I am working on to help with elliptic curve cryptography in my class
