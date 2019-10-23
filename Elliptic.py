@@ -24,6 +24,8 @@ ap.add_argument("--field", required=True, type=int)
 args = vars(ap.parse_args())
 #print info
 print("y^2 = x^3 + {}x + {} | over field mod {}".format(args["a"], args["b"], args["field"]))
+print("Determinant 4*{}^3 + 27*{}^2".format(args["a"], args["b"]))
+assert (4*(args["a"]**3) + 27*(args["b"]**2))%args["field"], "Determinant failed"
 print("-"*5)
 print("Squares in the field are:")
 squares = squaresModM(args["field"])
@@ -34,7 +36,7 @@ print("y^2 values for the function are:")
 ellipticValues = ellipticOutput(args["a"], args["b"], args["field"])
 for i, j in enumerate(ellipticValues):
     print("\t{}: {}".format(i,j))
-print("The points on the curve are:")
+print("The points on the curve are: \n\tInfinity")
 points = genPoints(squares, ellipticValues)
 for p in points:
-    print("({}, {})".format(p[0], p[1]))
+    print("\t({}, {})".format(p[0], p[1]))
