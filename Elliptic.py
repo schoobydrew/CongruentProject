@@ -39,4 +39,7 @@ for p in points:
     print("\t({}, {})".format(p[0], p[1]))
 print("-"*5)
 print("Outputting table to EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]))
-# f = open("EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]), w+)
+f = open("EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]), "w+")
+header = "(+)"
+for p in points:
+    
