@@ -1,4 +1,5 @@
 import argparse
+from EllipticAdd import EllipticAddition
 def squaresModM(m):
     squares = [(i**2)%m for i in range(m)]
     return squares
@@ -33,13 +34,25 @@ ellipticValues = ellipticOutput(args["a"], args["b"], args["field"])
 for i, j in enumerate(ellipticValues):
     print("\t{}: {}".format(i,j))
 print("-"*5)
-print("The points on the curve are: \n\tInfinity")
+print("The points on the curve are: \n")
 points = genPoints(squares, ellipticValues)
+points = ["Inf"] + points
 for p in points:
     print("\t({}, {})".format(p[0], p[1]))
 print("-"*5)
 print("Outputting table to EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]))
 f = open("EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]), "w+")
-header = "(+)"
+header = "(+),"
 for p in points:
-    
+    header += "({} {}),".format(p[0], p[1]) if p != "Inf" else "Inf,"
+print(header, file=f)
+for p1 in points:
+    results = []
+    for p2 in points:
+        result = EllipticAddition(p1, p2, args["a"], args["b"], args["field"])
+        results.append(result)
+    line = "({} {}),".format(p1[0], p1[1]) if p1 != "Inf" else "Inf,"
+    for r in results:
+        line += "({} {}),".format(r[0], r[1]) if r != "Inf" else "Inf,"
+    print(line, file=f)
+f.close()
