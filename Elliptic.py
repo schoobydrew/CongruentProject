@@ -1,13 +1,9 @@
 import argparse
 def squaresModM(m):
-    squares = []
-    for i in range(m):
-        squares.append((i**2)%m)
+    squares = [(i**2)%m for i in range(m)]
     return squares
 def ellipticOutput(a, b, m):
-    output = []
-    for i in range(m):
-        output.append((i**3 + a*i + b)%m)
+    output = [(i**3 + a*i + b)%m for i in range(m)]
     return output
 def genPoints(squares, curve):
     points = []
@@ -36,7 +32,11 @@ print("y^2 values for the function are:")
 ellipticValues = ellipticOutput(args["a"], args["b"], args["field"])
 for i, j in enumerate(ellipticValues):
     print("\t{}: {}".format(i,j))
+print("-"*5)
 print("The points on the curve are: \n\tInfinity")
 points = genPoints(squares, ellipticValues)
 for p in points:
     print("\t({}, {})".format(p[0], p[1]))
+print("-"*5)
+print("Outputting table to EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]))
+# f = open("EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]), w+)
