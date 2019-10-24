@@ -1,3 +1,6 @@
+#Point 1, Point 2
+#form y^2 = x^3 + Ax + B over field mod m
+#A, B, m
 def EllipticAddition(P1, P2, A, B, m):
     if P1 == "Inf":
         return P2
