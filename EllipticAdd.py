@@ -10,7 +10,7 @@ def EllipticAddition(P1, P2, A, B, m):
     y1 = P1[1]
     x2 = P2[0]
     y2 = P2[1]
-    if (x1 == x2) and (y1 == -y2):
+    if (x1 == x2) and ((y1 == -y2) or ((y1+y2)%m == 0)):
         return "Inf"
     #define lambda
     if (P1 == P2):

@@ -38,7 +38,7 @@ print("The points on the curve are: \n")
 points = genPoints(squares, ellipticValues)
 points = ["Inf"] + points
 for p in points:
-    print("\t({}, {})".format(p[0], p[1]))
+    print("\t({}, {})".format(p[0], p[1]) if p != "Inf" else "\t"+p)
 print("-"*5)
 print("Outputting table to EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]))
 f = open("EllipticTableA_{}B_{}M_{}.csv".format(args["a"], args["b"], args["field"]), "w+")
